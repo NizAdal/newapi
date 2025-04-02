@@ -9,7 +9,12 @@ function First() {
   useEffect(() => {
     const getArticals = async () => {
       try {
-        const adal = await axios.get("https://newsapi.org/v2/top-headlines?country=us&apiKey=389a2b1505604cbf99de0f2d92376e4a");
+        const adal = await axios.get("https://newsapi.org/v2/top-headlines", {
+  params: {
+    country: "us",
+    apiKey: process.env.REACT_APP_NEWS_API_KEY, // Use the variable here
+  },
+});
         setArtical(adal.data.articles);
       } catch (error) {
         console.error("Error fetching articles:", error);
